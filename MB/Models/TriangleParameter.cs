@@ -15,6 +15,8 @@ public class TriangleParameter : ISquareParameter
         Hypotenuse = hypotenuse;
     }
 
+    public bool IsRight => Math.Abs(Math.Pow(FirstLeg, 2) + Math.Pow(SecondLeg, 2) - Math.Pow(Hypotenuse, 2)) < double.Epsilon;
+    
     /// <summary>
     /// Первый катет
     /// </summary>

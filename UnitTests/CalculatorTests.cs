@@ -41,4 +41,15 @@ public class CalculatorTests
     {
         Assert.Throws<ArgumentOutOfRangeException>(() => new TriangleParameter(firstLeg, secondLeg, hypotenuse));
     }
+    
+    
+    [Test]
+    [TestCase(8.3, 12.4, 14.92, 51.46)]
+    public void TestTriangleRightCalculatorSuccess(double firstLeg, double secondLeg, double hypotenuse, double expected)
+    {
+        var parameter = new TriangleParameter(firstLeg, secondLeg, hypotenuse);
+        var circleCalculator = new TriangleRightCalculator(parameter);
+        var result = circleCalculator.Calculate();
+        Assert.AreEqual(expected, Math.Round(result, 2));
+    }
 }

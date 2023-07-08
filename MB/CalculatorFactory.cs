@@ -13,8 +13,15 @@ internal class CalculatorFactory : ICalculatorFactory
         return parameter switch
         {
             CircleParameter circleParameter => new CircleCalculator(circleParameter),
-            TriangleParameter triangleParameter => new TriangleCalculator(triangleParameter),
+            TriangleParameter triangleParameter => GetTriangleCalculator(triangleParameter),
             _ => throw new ArgumentOutOfRangeException(nameof(parameter))
         };
+    }
+
+    private ICalculator GetTriangleCalculator(TriangleParameter triangleParameter)
+    {
+        return triangleParameter.IsRight
+            ? new TriangleRightCalculator(triangleParameter) 
+            : new TriangleCalculator(triangleParameter);
     }
 }
